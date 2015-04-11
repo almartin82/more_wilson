@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<title>{% block title %}{{ SITENAME }}{% endblock %}</title>
-	<meta name="description" content="{% block description %}Coding, scientific development, finance, data analysis, visualization, statistics, and machine learning{% endblock %}">
+	<meta name="description" content="{% block description %}{{ DESCRIPTION }}{% endblock %}">
 	<meta name="author" content="{{ AUTHOR }}">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
@@ -11,87 +11,58 @@
 		<script src="{{ SITEURL }}/theme/html5.js"></script>
 		<![endif]-->
 	<link href="{{ SITEURL }}/theme/css/ipython.css" rel="stylesheet">
-	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
-	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-	<link href="//maxcdn.bootstrapcdn.com/bootswatch/3.2.0/simplex/bootstrap.min.css" rel="stylesheet">
+	<!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet"> -->
+	<!-- <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet"> -->
+	<!-- <link href="//maxcdn.bootstrapcdn.com/bootswatch/3.2.0/simplex/bootstrap.min.css" rel="stylesheet"> -->
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
+	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+	<link href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.2/simplex/bootstrap.min.css" rel="stylesheet">
 	<link href="{{ SITEURL }}/theme/css/local.css" rel="stylesheet">
 	<link href="{{ SITEURL }}/theme/css/pygments.css" rel="stylesheet">
 	{% block head %}{% endblock %}
 </head>
 <body>
 <div class="container">
-	<div class="page-header">
-		<h1><a href="{{ SITEURL }}/">{{ SITENAME }}</a>
-			<br>{% if SITESUBTITLE %}<small>{{ SITESUBTITLE }}</small></h1>{% endif %}
-	</div>
-	<div class="row">
-		<div class="col-md-8 col-md-offset-2">
-			{% block content %}{% endblock %}
-		</div>
-	</div> {# End row #}
-	<!-- <hr> -->
-</div> <!-- /container -->
-<footer class="aw-footer bg-danger">
-	<div class="container"> <!-- footer -->
-		<div class="row">
-			<div class="col-md-10 col-md-offset-1">
-				<div class="row">
-					<div class="col-md-3">
-						<h4>Navigation</h4>
-						<ul class="list-unstyled my-list-style">
-							<li><a href="{{SITEURL}}">{{ SITENAME }}</a></li>
-							{% for title, link in MENUITEMS %}
-							<li><a href="{{ SITEURL }}/{{ link }}"><i class="fa fa-{{ title }} "></i> {{title}}</a></li>
-							{% endfor %}
-							{% if DISPLAY_PAGES_ON_MENU %}
-							{% for page in PAGES %}
-							<li><a href="{{ SITEURL }}/{{ page.url }}"><i class="fa fa-{{ page.title }} "></i> {{page.title}}</a></li>
-							{% endfor %}
-							{% endif %}
-							{% if FEED_ALL_ATOM %}
-							<li><a href="{{ FEED_DOMAIN }}/{{ FEED_ALL_ATOM }}" type="application/atom+xml"><i class="fa fa-rss "></i> atom</a></li>
-							{% endif %}
-							{% if FEED_ALL_RSS %}
-							<li><a href="{{ FEED_DOMAIN }}/{{ FEED_ALL_RSS }}" type="application/rss+xml"><i class="fa fa-rss "></i> rss</a></li>
-							{% endif %}
-						</ul>
-					</div>
-					<div class="col-md-3">
-						<h4>Author</h4>
-						<ul class="list-unstyled my-list-style">
-						{% for name, link in SOCIAL %}
-							<li><a href="{{ link }}">{{ name }}</a></li>
-						{% endfor %}
-						</ul>
-					</div>
-					<div class="col-md-3">
-						<h4>Categories</h4>
-						<ul class="list-unstyled my-list-style">
-							{% for cat, art in categories %}
-							<li><a href="{{SITEURL}}/category/{{cat | replace(" ", "-") }}.html">{{cat}} ({{art | count}})</a></li>
-							{% endfor %}
-						</ul>
-					</div>
-				{% if LINKS %}
-					<div class="col-md-3">
-						<h4>Links</h4>
-						<ul class="list-unstyled my-list-style">
-						{% for name, link in LINKS %}
-							<li><a href="{{ link }}">{{ name }}</a></li>
-						{% endfor %}
-						</ul>
-					</div>
-				{% endif %}
-				</div>
+	<!-- NAVBAR -->
+	<nav class="navbar navbar-default" style="margin-top:2em;">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="{{ SITEURL }}">{{ SITENAME }}</a>
+			</div>			
+			<!-- <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1"> -->
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
+					{% for title, key, link in MENUITEMS %}
+					<li><a href="{{ SITEURL }}/{{ link }}"><i class="fa fa-{{ key }} "></i> {{title}}</a></li>
+					{% endfor %}
+					{% if DISPLAY_PAGES_ON_MENU %}
+					{% for page in PAGES %}
+					<li><a href="{{ SITEURL }}/{{ page.url }}"><i class="fa fa-{{ page.title }} "></i> {{page.title}}</a></li>
+					{% endfor %}
+					{% endif %}
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="{{ SITEURL }}/categories.html"><i class="fa fa-archive"></i> categories</a></li>
+					<li><a href="{{ SITEURL }}/tags.html"><i class="fa fa-tags"></i> tags</a></li>
+					<li><a href="{{ SITEURL }}/feeds/rss.xml"><i class="fa fa-rss"></i> rss</a></li>
+				</ul>
 			</div>
 		</div>
-	</div>
-</footer>
+	</nav>
+	
+	<!-- MAIN CONTENT -->
+	{% block mainrow %}{% endblock %}
+</div>
 <div class="container">
 	<div class="row">
-		<div class="col-md-12 text-center center-block aw-bottom">
-			<p>&copy; {{ AUTHOR }} 2014</p>
-			<p>Powered by Pelican</p>
+		<div class="col-md-10 text-center center-block aw-bottom">
+			<p>built with <a href="http://docs.getpelican.com/en/3.5.0/#">pelican</a></p>
 		</div>
 	</div>
 </div>
@@ -112,6 +83,6 @@ jQuery(document).ready(function($) {
 });
 </script>
 {% include "analytics.html" %}
-{% include "github.html" %}
+{% include "github.html" %} 
 </body>
 </html>
