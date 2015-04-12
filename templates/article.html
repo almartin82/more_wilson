@@ -12,7 +12,7 @@
 	</div>
 	{% if article.category %}
 	<div>
-		Category:
+		category:
 		<span itemprop="articleSection">
 			<a href="{{ SITEURL }}/{{ article.category.url }}" rel="category">{{ article.category }}</a>
 		</span>
@@ -20,7 +20,7 @@
 	{% endif %}
 	{% if article.tags %} 
 	<div>
-		Tags:
+		tags:
 		{% for tag in article.tags %}
 		<span itemprop="keywords">
 			<a href="{{ SITEURL }}/{{ tag.url }}" rel="tag">{{ tag }}</a>

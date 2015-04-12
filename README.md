@@ -1,4 +1,4 @@
-# safetoeat
+# more_wilson
 
 A pelican theme by [@moneywithwings](www.twitter.com/moneywithwings), based on the aboutwilson theme by [@wilsonfreitas](https://github.com/wilsonfreitas)
 

@@ -35,8 +35,8 @@
 				</button>
 				<a class="navbar-brand" href="{{ SITEURL }}">{{ SITENAME }}</a>
 			</div>			
-			<!-- <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1"> -->
-			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<!-- MENUITEMS: update the MENUITEMS dict in pelicanconf.py -->
+			<div id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
 					{% for title, key, link in MENUITEMS %}
 					<li><a href="{{ SITEURL }}/{{ link }}"><i class="fa fa-{{ key }} "></i> {{title}}</a></li>
@@ -56,13 +56,15 @@
 		</div>
 	</nav>
 	
-	<!-- MAIN CONTENT -->
+	<!-- MAIN CONTENT: edit in base_site.html template -->
 	{% block mainrow %}{% endblock %}
 </div>
+
+<!-- FOOTER -->
 <div class="container">
 	<div class="row">
-		<div class="col-md-10 text-center center-block aw-bottom">
-			<p>built with <a href="http://docs.getpelican.com/en/3.5.0/#">pelican</a></p>
+		<div class="col-md-11 text-center center-block aw-bottom">
+			<p>{{ SITENAME }} is built with <a href="http://docs.getpelican.com/en/3.5.0/#">pelican</a></p>
 		</div>
 	</div>
 </div>
