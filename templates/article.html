@@ -18,6 +18,7 @@
 		</span>
 	</div>
 	{% endif %}
+	
 	{% if article.tags %} 
 	<div>
 		tags:
@@ -31,7 +32,11 @@
 	<div itemprop="articleBody" class="article-body">{{ article.content }}</div>
 	<hr>
 	{% include "twitter.html" %}
+
+	{% if USE_COMMENTS %}
 	<h2>Comments</h2>
+	{% endif %}
+	
 	{% include 'disqus.html' %}
 </div>
 {% endblock %}
