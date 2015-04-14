@@ -1,7 +1,8 @@
 {% extends "base.html" %}
 {% block mainrow %}
 	<div class="row">
-		<div class="col-md-3" style="margin-top:2em;">
+		<!-- <div class="col-md-3" style="margin-top:1em;"> -->
+		<div class="col-md-3">
 			<!-- MEDIAITEMS: update the MEDIAITEMS dict in pelicanconf.py -->
 			<ul class="list-group">
 				{% for url, icon, uid in MEDIAITEMS %}
@@ -19,6 +20,7 @@
 			</ul>
 		</div>
 		<div class="col-md-8">
+			<!-- ARTICLE CONTENT: edit in index.html template -->
 			{% block content %}{% endblock %}
 		</div>
 	</div>
